@@ -16,8 +16,7 @@ This simulation primarily relies on CPU computations for solving the filtered Na
 The solver performs approximately 9.67 trillion operations over the entire simulation.
 For an estimate of computational operations, see `computation_estimate.txt`.
 For a mathematical description see `mathematical_descritpion.txt`.
-
-  For the simulation video, the duration of 5 seconds (real-time) was extended to 12 seconds, with interpolation to 120 FPS using FlowFrames and upscaling to 4K resolution using Video2X.
+For the simulation video, the duration of 5 seconds (real-time) was extended to 12 seconds, with interpolation to 120 FPS using FlowFrames and upscaling to 4K resolution using Video2X.
 
 ## Requirements
 
