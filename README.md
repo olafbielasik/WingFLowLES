@@ -11,6 +11,7 @@ The simulation models turbulent flow over a Clark Y airfoil using the LES approa
 - **Domain**: Rectangular domain with x ∈ [-0.5, 3.0] and y ∈ [-1.0, 1.0], discretized into a 600x400 grid.
 - **Simulation Parameters**: Reynolds number (Re) = 2000, Smagorinsky constant (Cs) = 0.1, time step (dt) = 0.0002, total steps = 60,000.
 - **Outputs**: Velocity fields (u, v), pressure (p), vorticity (ω), saved every 500 steps, and a final video animation (`simulation.mp4`).
+This simulation primarily relies on CPU computations for solving the filtered Navier-Stokes equations.
 The solver performs approximately 9.67 trillion operations over the entire simulation.
 For an estimate of computational operations, see `computation_estimate.txt`.
 For a mathematical description see `mathematical_descritpion.txt`.
