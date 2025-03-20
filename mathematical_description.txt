@@ -95,4 +95,4 @@ While not computed directly, the simulation’s pressure and velocity fields ena
 Post-Processing
 ------------------------
 
-The original 5-second animation was extended to 12 seconds, interpolated to 240 FPS with FlowFrames, and upscaled to 4K using Video2X.
+The original 5-second animation was extended to 12 seconds, interpolated to 120 FPS with FlowFrames, and upscaled to 4K using Video2X.
