@@ -1,0 +1,98 @@
+File Structure
+--------------
+
+- `runsimulation.sh`: Main script to execute the pipeline.
+- `mesh_generation.py`: Generates the grid and airfoil geometry.
+- `solver_les.py`: Implements the LES solver with IB method.
+- `video_animation.py`: Creates the animation from simulation frames.
+- `environment.yml`: Conda environment specification.
+- `data/`: Directory for simulation data (e.g., `XX.txt`, `u.txt`, `simulation.mp4`).
+- `data/video_frames/`: Directory for intermediate frame data.
+
+Mathematical Description
+------------------------
+
+The *LiftVortex* simulation solves the incompressible Navier-Stokes equations using the Large Eddy Simulation (LES) framework with the Smagorinsky subgrid-scale model and an Immersed Boundary (IB) method. Below is a concise mathematical description of the governing equations, their discretization, and their role in capturing lift and flow dynamics on a 600 × 400 grid (240,000 cells).
+
+### 1. Governing Equations
+
+The simulation is based on the filtered incompressible Navier-Stokes equations:
+∂ū/∂t + (ū · ∇)ū = -∇p̄ + ∇ · [(ν + ν_t) (∇ū + (∇ū)^T)]
+∇ · ū = 0
+Where:
+- ū = (u, v): Filtered velocity vector
+- p̄: Filtered pressure (normalized by density, ρ = 1)
+- ν = 1/Re = 1/2000: Kinematic viscosity
+- ν_t: Subgrid-scale eddy viscosity from the Smagorinsky model
+
+### 2. Smagorinsky Subgrid-Scale Model
+
+The unresolved turbulent scales are modeled using the Smagorinsky approach:
+ν_t = (C_s Δ)^2 |S̄|,   |S̄| = √(2 S̄_ij S̄_ij)
+- C_s = 0.1: Smagorinsky constant
+- Δ = √(Δx Δy): Filter width, with Δx ≈ 0.00584, Δy ≈ 0.00501
+- S̄_ij = (1/2) (∂ū_i/∂x_j + ∂ū_j/∂x_i): Strain rate tensor, computed via central differences (e.g., ∂u/∂x = (u_{i+1,j} - u_{i-1,j}) / (2 Δx))
+
+This model captures the transition from near-laminar flow (low ν_t) at the leading edge to fully turbulent flow downstream.
+
+### 3. Time Advancement (Fractional Step Method)
+
+The equations are solved using a fractional step method:
+- Predictor Step (Intermediate velocity):
+  u^* = u^n + Δt [ -(u^n · ∇)u^n + (ν + ν_t) ∇^2 u^n ]
+  - Convection: u ∂u/∂x ≈ u_{i,j} (u_{i+1,j} - u_{i-1,j}) / (2 Δx)
+  - Diffusion: ∇^2 u ≈ (u_{i+1,j} - 2u_{i,j} + u_{i-1,j}) / Δx^2 + (u_{i,j+1} - 2u_{i,j} + u_{i,j-1}) / Δy^2
+- Pressure Correction:
+  ∇^2 p^{n+1} = (1/Δt) ∇ · u^*
+  Solved iteratively with:
+  p_{i,j} = [(p_{i+1,j} + p_{i-1,j}) + (Δx/Δy)^2 (p_{i,j+1} + p_{i,j-1}) - (Δx Δy / Δt) ∇ · u^*] / [2 (1 + (Δx/Δy)^2)]
+- Corrector Step:
+  u^{n+1} = u^* - Δt ∇p^{n+1}
+  - ∂p/∂x ≈ (p_{i+1,j} - p_{i-1,j}) / (2 Δx)
+
+Time step: Δt = 0.0002, total steps = 60,000, yielding 12 seconds of simulation time.
+
+### 4. Immersed Boundary Method
+
+The no-slip condition on the airfoil is enforced using an IB mask:
+- Inside the airfoil: u = v = 0
+- Mask constructed via the point-in-polygon algorithm on the 240,000-cell grid.
+
+### 5. Vorticity
+
+Vorticity is calculated to visualize flow structures:
+ω = ∂v/∂x - ∂u/∂y ≈ (v_{i+1,j} - v_{i-1,j}) / (2 Δx) - (u_{i,j+1} - u_{i,j-1}) / (2 Δy)
+Smoothed with a Gaussian filter (σ = 1.0) to reduce numerical noise.
+
+### 6. Lift Force Generation
+
+Lift arises from the pressure difference across the airfoil, driven by faster flow (lower pressure) above and slower flow (higher pressure) below, per Bernoulli’s principle. The -20° angle of attack enhances this effect, with laminar flow near the leading edge transitioning to turbulent flow, increasing vorticity and circulation. Lift can be expressed as:
+L = ∮_{airfoil} (p n - τ · n) ds
+Where:
+- L: Lift force
+- p: Pressure
+- τ = (ν + ν_t) (∇u + (∇u)^T): Viscous stress tensor
+- n: Surface normal vector
+
+While not computed directly, the simulation’s pressure and velocity fields enable this analysis.
+
+### 7. Boundary Conditions
+
+- Inlet (x = -0.5): u = 1.0, v = 0.0
+- Outlet (x = 3.0): Zero-gradient (u_{i,nx-1} = u_{i,nx-2})
+- Top/Bottom (y = ±1.0): Slip (v = 0.0)
+- Airfoil: No-slip via IB method
+
+### 8. Discretization and Computational Details
+
+- Grid: 600 × 400 cells, non-uniform with refinement near x ∈ [0, 1.5].
+- Spatial steps: Δx ≈ 
+
+0.00584, Δy ≈ 0.00501.
+- Operations: O(nx · ny) per step for advection, diffusion, and ν_t; pressure solver converges in ~100 iterations.
+
+
+Post-Processing
+------------------------
+
+The original 5-second animation was extended to 12 seconds, interpolated to 240 FPS with FlowFrames, and upscaled to 4K using Video2X.

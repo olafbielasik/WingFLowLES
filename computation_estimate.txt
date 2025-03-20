@@ -1,0 +1,26 @@
+Computation Estimate for solver_les.py
+--------------------------------------
+
+This file estimates the total number of computational operations performed by the LES solver in `solver_les.py` for the WingFlowLES simulation.
+
+Key Parameters:
+- Grid size: 600 x 400 = 240,000 cells
+- Total time steps: 60,000
+- Internal cells (excluding boundaries): ~237,604
+
+Operations per Time Step:
+1. Smagorinsky Model (ν_t): ~5.7 million operations
+   - Strain rate and eddy viscosity for 237,604 cells.
+2. Predictor Step (u*, v*): ~9.7 million operations
+   - Convection and diffusion terms.
+3. Pressure Solver: ~143 million operations
+   - Iterative Poisson solver, ~50 iterations per step.
+4. Corrector Step (u, v update): ~2.6 million operations
+   - Pressure gradient correction.
+5. Boundary Conditions: ~6,000 operations
+   - Inlet, outlet, and slip conditions.
+
+Total per Step: ~161 million operations
+
+Total for Simulation:
+- 161 million operations/step x 60,000 steps ≈ 9.67 trillion operations (9.67 × 10^12)

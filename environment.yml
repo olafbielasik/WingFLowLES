@@ -1,0 +1,11 @@
+name: cfd_les_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9             # Python version for compatibility with all libraries
+  - scipy>=1.15.2          # For numerical operations like gradients and Gaussian filtering
+  - numpy>=1.21.0          # For array manipulations and numerical computations
+  - numba>=0.55.0          # For Just-In-Time (JIT) compilation to optimize performance
+  - matplotlib>=3.5.0      # For visualization, plotting, and animation generation
+  - ffmpeg                 # For rendering video animations via Matplotlib
+
