@@ -6,7 +6,7 @@ This project utilizes a Large Eddy Simulation (LES) combined with the Immersed B
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=CqgccimCQGE">
-    <img src="https://img.youtube.com/vi/CqgccimCQGE/maxresdefault.jpg" alt="Turbulent Flow Simulation" width="600"/>
+    <img src="https://img.youtube.com/vi/CqgccimCQGE/maxresdefault.jpg" alt="Turbulent Flow Simulation" width="800"/>
   </a>
 </p>
 
@@ -24,7 +24,9 @@ For an estimate of computational operations, see `computation_estimate.txt`.
 For a mathematical description see `mathematical_descritpion.txt`.
 For the simulation video, the duration of 5 seconds (real-time) was extended to 12 seconds, with interpolation to 120 FPS using FlowFrames and upscaling to 4K resolution using Video2X.
 
-![WingFlowLES Simulation](data/simulation.gif)
+<p align="center">
+  <img src="data/simulation.gif" alt="WingFlowLES Simulation">
+</p>
 
 ## Requirements
 
