@@ -13,16 +13,16 @@ This project utilizes a Large Eddy Simulation (LES) combined with the Immersed B
 ## Project Overview
 
 The simulation models turbulent flow over a Clark Y airfoil using the LES approach with the Smagorinsky subgrid-scale model. A non-uniform grid with enhanced resolution near the airfoil is employed to resolve fine-scale turbulence. Key features include:
-- **Airfoil Geometry**: Clark Y airfoil scaled to a chord length of 1.5 units, rotated by -20 degrees.
-- **Domain**: Rectangular domain with x ∈ [-0.5, 3.0] and y ∈ [-1.0, 1.0], discretized into a 600x400 grid.
-- **Simulation Parameters**: Reynolds number (Re) = 2000, Smagorinsky constant (Cs) = 0.1, time step (dt) = 0.0002, total steps = 60,000.
-- **Outputs**: Velocity fields (u, v), pressure (p), vorticity (ω), saved every 500 steps, and a final video animation (`simulation.mp4`).
+- **Airfoil Geometry**: Clark Y airfoil scaled to a chord length of 1.5 units, rotated by -20 degrees
+- **Domain**: Rectangular domain with x ∈ [-0.5, 3.0] and y ∈ [-1.0, 1.0], discretized into a 600x400 grid
+- **Simulation Parameters**: Reynolds number (Re) = 2000, Smagorinsky constant (Cs) = 0.1, time step (dt) = 0.0002, total steps = 60,000
+- **Outputs**: Velocity fields (u, v), pressure (p), vorticity (ω), saved every 500 steps, and a final video animation (`simulation.mp4`)
 
-This simulation primarily relies on CPU computations for solving the filtered Navier-Stokes equations.
-The solver performs approximately 9.67 trillion operations over the entire simulation.
-For an estimate of computational operations, see `computation_estimate.txt`.
-For a mathematical description see `mathematical_descritpion.txt`.
-For the simulation video, the duration of 5 seconds (real-time) was extended to 12 seconds, with interpolation to 120 FPS using FlowFrames and upscaling to 4K resolution using Video2X.
+This simulation primarily relies on CPU computations for solving the filtered Navier-Stokes equations
+The solver performs approximately 9.67 trillion operations over the entire simulation
+For an estimate of computational operations, see `computation_estimate.txt`
+For a mathematical description see `mathematical_descritpion.txt`
+For the simulation video, the duration of 5 seconds (real-time) was extended to 12 seconds, with interpolation to 120 FPS using FlowFrames and upscaling to 4K resolution using Video2X
 
 <p align="center">
   <img src="data/simulation.gif" alt="WingFlowLES Simulation">
@@ -30,7 +30,7 @@ For the simulation video, the duration of 5 seconds (real-time) was extended to 
 
 ## Requirements
 
-To run the simulation, set up the environment using the provided `environment.yml` file. Then execute the full pipeline using the provided Bash script in `run_simulation.sh`.
+To run the simulation, set up the environment using the provided `environment.yml` file. Then execute the full pipeline using the provided Bash script in `run_simulation.sh`
 
 ## License
 
