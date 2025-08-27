@@ -2,7 +2,7 @@
 
 This project utilizes a Large Eddy Simulation (LES) combined with the Immersed Boundary (IB) method to model turbulent flow around a Clark Y airfoil at a -20-degree angle of attack. The simulation analyzes flow field dynamics, including velocity components (u, v), pressure (p), and vorticity (ω), while producing visualizations such as vorticity plots and video animations. Notably, it highlights the lift force generation resulting from the pressure and velocity distribution around the airfoil.
 
-<h2 align="center">⬇️ YT ⬇️</h2>
+<h2 align="center">⬇️ click for video ⬇️</h2>
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=CqgccimCQGE">
@@ -35,3 +35,4 @@ To run the simulation, set up the environment using the provided `environment.ym
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.txt file for details. 
+
