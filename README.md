@@ -10,7 +10,7 @@ This project utilizes a Large Eddy Simulation (LES) combined with the Immersed B
   </a>
 </p>
 
-## Project Overview
+## Overview
 
 The simulation models turbulent flow over a Clark Y airfoil using the LES approach with the Smagorinsky subgrid-scale model. A non-uniform grid with enhanced resolution near the airfoil is employed to resolve fine-scale turbulence. Key features include:
 - **Airfoil Geometry**: Clark Y airfoil scaled to a chord length of 1.5 units, rotated by -20 degrees
