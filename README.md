@@ -28,14 +28,7 @@ For the simulation video, the duration of 5 seconds (real-time) was extended to 
   <img src="data/simulation.gif" alt="WingFlowLES Simulation">
 </p>
 
-## Requirements
+## Setup
 
 To run the simulation, set up the environment using the provided `environment.yml` file. Then execute the full pipeline using the provided Bash script in `run_simulation.sh`
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE.txt file for details. 
-
-
-
 
