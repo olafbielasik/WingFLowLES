@@ -30,5 +30,6 @@ For the simulation video, the duration of 5 seconds (real-time) was extended to 
 
 ## Setup
 
-To run the simulation, set up the environment using the provided `environment.yml` file. Then execute the full pipeline using the provided Bash script in `run_simulation.sh`
+To run the simulation, set up the environment using the provided `environment.yml` file. 
+Then execute the full pipeline using the provided Bash script in `run_simulation.sh`
 
